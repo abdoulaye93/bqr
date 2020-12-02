@@ -57,7 +57,7 @@
                     <div class="main-title my-8">
                         <h1 class="font-bold text-2xl text-center">{{$info->name}}</h1>
                     </div>
-
+test
                     <div class="main-question mb-8 flex flex-col divide-y text-gray-800 text-base">
                         @foreach($contents as $content)
                             <div class="item px-6 py-6" x-data="{isOpen : false}">
