@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Localite extends Model
 {
     use HasFactory;
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
 }

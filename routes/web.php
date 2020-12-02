@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::namespace('Dashboard')->middleware(['auth:sanctum', 'verified'])->prefix('dashboard')->group(function (){
+    Route::name('dashboard')->group(function () {
+        Route::get('/', 'HomeController');
+        Route::name('.info')->group(function () {
+            Route::post('/{info}', 'InfoController@store')->name('.store');
+            Route::get('/create/{info}', 'InfoController@create')->name('.create');
+            Route::get('/show/{info}', 'InfoController@show')->name('.show');
+        });
+    });
+});

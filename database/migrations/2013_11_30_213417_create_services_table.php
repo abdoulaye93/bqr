@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocalitesTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateLocalitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('localites', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('cercle_id')->constrained('cercles')->onDelete('cascade');
+            $table->foreignId('localite_id')->constrained('localites')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateLocalitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('localites');
+        Schema::dropIfExists('services');
     }
 }

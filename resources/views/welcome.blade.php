@@ -1,55 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tailwind Starter Template - Help Article: Tailwind Toolbox</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <link href="https://unpkg.com/tailwindcss@next/dist/tailwind.min.css" rel="stylesheet">
-    <!--Replace with your tailwind.css once created-->
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Lato');
-        html { font-family: 'Lato', sans-serif; }
-    </style>
-</head>
-<body class="bg-gray-100 tracking-wider tracking-normal">
-<nav id="header" class="fixed w-full z-10 top-0 bg-white border-b border-gray-400">
-    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-4">
-        <div class="pl-4 flex items-center">
-            <svg class="h-5 pr-3 fill-current text-purple-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M0 2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm14 12h4V2H2v12h4c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2zM5 9l2-2 2 2 4-4 2 2-6 6-4-4z"/>
-            </svg>
-            <a class="text-gray-900 text-base no-underline hover:no-underline font-extrabold text-xl"  href="#">
-                BRQ
-            </a>
-        </div>
-        <div class="block lg:hidden pr-4">
-            <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 hover:border-purple-500 appearance-none focus:outline-none">
-                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <title>Menu</title>
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
-                </svg>
-            </button>
-        </div>
-        <div class="w-full flex-grow lg:flex  lg:content-center lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 z-20" id="nav-content">
-            <div class="flex-1 w-full mx-auto max-w-sm content-center py-4 lg:py-0">
-            </div>
-            <ul class="list-reset lg:flex justify-end items-center">
-                <li class="mr-3 py-2 lg:py-0">
-                    <a class="inline-block py-2 px-4 text-gray-900 font-bold no-underline" href="#">Acceuil</a>
-                </li>
-                <li class="mr-3 py-2 lg:py-0">
-                    <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-2 px-4" href="#">Comment ça marche</a>
-                </li>
-                <li class="mr-3 py-2 lg:py-0">
-                    <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-2 px-4" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+@extends('layouts.app')
+@section('container')
+
 <!--Container-->
 <div class="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16 mb-2">
     <div class="w-full lg:w-1/5 lg:px-6 text-xl text-gray-800 leading-normal">
@@ -118,78 +69,9 @@
         </ol>
         <blockquote class="border-l-4 border-purple-500 italic my-8 pl-8 md:pl-12">Example of blockquote - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.</blockquote>
         <p class="py-6">Example code block:</p>
-        <!--/ Post Content-->
-        <!-- Useful -->
-        <!-- /Useful -->
     </div>
-    <!--Back link -->
 </div>
 <!--/container-->
-<footer class="footer bg-white relative pt-1 border-b-2 border-blue-700">
-    <div class="container mx-auto px-6">
-        <div class="mt-16 border-t-2 border-gray-300 flex flex-col items-center">
-            <div class="sm:w-2/3 text-center py-6">
-                <p class="text-sm text-blue-700 font-bold mb-2">
-                    © 2020 BRQ Tous Droits Réservés
-                </p>
-            </div>
-        </div>
-    </div>
-</footer><script>
-    /*Toggle dropdown list*/
-    /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
-
-    var navMenuDiv = document.getElementById("nav-content");
-    var navMenu = document.getElementById("nav-toggle");
-
-    var helpMenuDiv = document.getElementById("menu-content");
-    var helpMenu = document.getElementById("menu-toggle");
-
-    document.onclick = check;
-
-    function check(e){
-        var target = (e && e.target) || (event && event.srcElement);
+@endsection
 
 
-        //Nav Menu
-        if (!checkParent(target, navMenuDiv)) {
-            // click NOT on the menu
-            if (checkParent(target, navMenu)) {
-                // click on the link
-                if (navMenuDiv.classList.contains("hidden")) {
-                    navMenuDiv.classList.remove("hidden");
-                } else {navMenuDiv.classList.add("hidden");}
-            } else {
-                // click both outside link and outside menu, hide menu
-                navMenuDiv.classList.add("hidden");
-            }
-        }
-
-        //Help Menu
-        if (!checkParent(target, helpMenuDiv)) {
-            // click NOT on the menu
-            if (checkParent(target, helpMenu)) {
-                // click on the link
-                if (helpMenuDiv.classList.contains("hidden")) {
-                    helpMenuDiv.classList.remove("hidden");
-                } else {helpMenuDiv.classList.add("hidden");}
-            } else {
-                // click both outside link and outside menu, hide menu
-                helpMenuDiv.classList.add("hidden");
-            }
-        }
-
-    }
-
-    function checkParent(t, elm) {
-        while(t.parentNode) {
-            if( t == elm ) {return true;}
-            t = t.parentNode;
-        }
-        return false;
-    }
-
-
-</script>
-</body>
-</html>

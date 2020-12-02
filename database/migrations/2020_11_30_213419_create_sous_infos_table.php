@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCerclesTable extends Migration
+class CreateSousInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCerclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cercles', function (Blueprint $table) {
+        Schema::create('sous_infos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
+            $table->foreignId('info_id')->constrained('infos')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCerclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cercles');
+        Schema::dropIfExists('sous_infos');
     }
 }

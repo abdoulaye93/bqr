@@ -27,6 +27,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'first_name',
+        'profile_id',
+        'service_id',
     ];
 
     /**
@@ -58,4 +61,20 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function service()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

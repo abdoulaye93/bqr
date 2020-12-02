@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 require('moment');
+require('./home');
 
 import Vue from 'vue';
 

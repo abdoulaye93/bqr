@@ -16,7 +16,6 @@ class CreateInfosTable extends Migration
         Schema::create('infos', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('localite_id')->constrained('localites')->onDelete('cascade');
             $table->timestamps();
         });
     }
