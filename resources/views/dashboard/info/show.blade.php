@@ -20,21 +20,21 @@
                         </a>
                     </li>
                     @if (auth()->check())
-                        @foreach($infos as $info)
+                        @foreach($infos as $inf)
                             <li class="py-2 md:my-0 hover:bg-purple-100 lg:hover:bg-transparent">
-                            @if($info->sousInfos->count()>=1)
+                            @if($inf->sousInfos->count()>=1)
                                 <li class="md:my-0 hover:bg-purple-100 lg:hover:bg-transparent" >
-                                    <a href="{{route('dashboard.info.create',$info)}}">
-                                        <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">{{$info->name}}</span>
+                                    <a href="{{route('dashboard.info.create',$inf)}}">
+                                        <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">{{$inf->name}}</span>
                                     </a>
                                     @else
-                                        <a  href="{{route('dashboard.info.create',$info)}}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400">
-                                            <span class="pb-1 md:pb-0 text-sm">{{$info->name}}</span>
+                                        <a  href="{{route('dashboard.info.create',$inf)}}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400">
+                                            <span class="pb-1 md:pb-0 text-sm">{{$inf->name}}</span>
                                         </a>
                                     @endif
-                                    @if($info->sousInfos->count()>=1)
+                                    @if($inf->sousInfos->count()>=1)
                                         <ul class="list-reset">
-                                            @foreach($info->sousInfos as $sousInfo)
+                                            @foreach($inf->sousInfos as $sousInfo)
                                                 <li class="md:my-0 hover:bg-purple-100 lg:hover:bg-transparent">
                                                     <a href="#" class="block pl-8 align-middle text-gray-700 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400">
                                                         {{$sousInfo->name}}
@@ -51,7 +51,13 @@
         </div>
         <div class="w-full lg:w-4/5 p-8 mt-6 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded">
             <!--Title-->
-
+             <div class="mb-3">
+                 <a href="{{route('dashboard.info.create',$info)}}" class="mr-5  hover:bg-blue-700 hover:text-white border border-gray-400 text-blue-700 font-bold py-2 px-6 rounded-lg text-white">
+                     Créer {{$info->name}}
+                 </a>
+                 <span class="font-sans break-normal text-gray-900 pt-6 pb-2 text-xl">Liste des infos</span>
+             </div>
+            <hr class="border-b border-gray-400">
                 <div class="container mx-auto px-4 sm:px-8 max-w-3xl">
 
                     <div class="main-title my-8">

@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function __invoke()
     {
         $infos = Info::all();
-        return view('dashboard.dashboard',compact('infos'));
+        return view('welcome',compact('infos'));
     }
 
 }

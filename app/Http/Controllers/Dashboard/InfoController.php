@@ -20,7 +20,7 @@ class InfoController extends Controller
     public function create(Info $info){
         $infos = Info::all();
         $localites = Localite::all();
-        return view('dashboard.info.create',compact('info','infos','localites'));
+        return view('dashboard.info.create_info',compact('info','infos','localites'));
     }
 
     /**
@@ -28,7 +28,6 @@ class InfoController extends Controller
      * @param Info $info
      */
     public function store(Request $request,Info $info){
-        dd($info);
         $validated = $request->validate([
             'localite_id' => 'required|exists:localites,id',
             'info' => 'required'
@@ -36,7 +35,6 @@ class InfoController extends Controller
         $validated = Arr::add($validated, 'info_id',$info->id);
         $validated = Arr::add($validated, 'user_id',auth()->user()->id);
         Content::create($validated);
-        dd($info);
         return redirect()->route('dashboard.info.show',$info);
     }
 

@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::namespace('Dashboard')->group(function (){
+    Route::get('/', 'HomeController');
+
 });
 
 Route::namespace('Dashboard')->middleware(['auth:sanctum', 'verified'])->prefix('dashboard')->group(function (){

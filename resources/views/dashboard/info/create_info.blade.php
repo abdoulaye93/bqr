@@ -19,33 +19,33 @@
                             <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Acceuil</span>
                         </a>
                     </li>
+                    <li class="py-2 md:my-0 hover:bg-purple-100 lg:hover:bg-transparent">
                     @if (auth()->check())
-                        @foreach($infos as $info)
-                            <li class="py-2 md:my-0 hover:bg-purple-100 lg:hover:bg-transparent">
-                            @if($info->sousInfos->count()>=1)
+                        @foreach($infos as $inf)
+                            @if($inf->sousInfos->count()>=1)
                                 <li class="md:my-0 hover:bg-purple-100 lg:hover:bg-transparent" >
-                                    <a href="{{route('dashboard.info.create',$info)}}">
-                                        <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">{{$info->name}}</span>
-                                    </a>
-                                    @else
-                                        <a  href="{{route('dashboard.info.create',$info)}}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400">
-                                            <span class="pb-1 md:pb-0 text-sm">{{$info->name}}</span>
-                                        </a>
-                                    @endif
-                                    @if($info->sousInfos->count()>=1)
-                                        <ul class="list-reset">
-                                            @foreach($info->sousInfos as $sousInfo)
-                                                <li class="md:my-0 hover:bg-purple-100 lg:hover:bg-transparent">
-                                                    <a href="#" class="block pl-8 align-middle text-gray-700 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400">
-                                                        {{$sousInfo->name}}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                </li>
-                                @endforeach
+                                <a href="{{route('dashboard.info.create',$inf)}}">
+                                    <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">{{$inf->name}}</span>
+                                </a>
+                            @else
+                                <a  href="{{route('dashboard.info.create',$inf)}}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400">
+                                    <span class="pb-1 md:pb-0 text-sm">{{$inf->name}}</span>
+                                </a>
                             @endif
+                            @if($inf->sousInfos->count()>=1)
+                                <ul class="list-reset">
+                                    @foreach($inf->sousInfos as $sousInfo)
+                                        <li class="md:my-0 hover:bg-purple-100 lg:hover:bg-transparent">
+                                            <a href="#" class="block pl-8 align-middle text-gray-700 no-underline hover:text-purple-500 border-l-4 border-transparent lg:hover:border-gray-400">
+                                                {{$sousInfo->name}}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        @endforeach
+                    @endif
+                    </li>
                 </ul>
             </div>
         </div>
@@ -57,10 +57,11 @@
                     </a>
                 </h1>
                 <hr class="border-b border-gray-400">
-                <form class="mt-2"  action="{{route('dashboard.info.store',$info)}}" accept-charset="UTF-8"  method="POST"  >
+
+                                <form class="mt-2"  action="{{route('dashboard.info.store',$info)}}" accept-charset="UTF-8"  method="POST"  >
                     @csrf
                     <label class="block">
-                        <span class="text-gray-700">Nom</span>
+                        <span class="text-gray-700">{{$info->name}}</span>
                         <input class="form-input mt-1 ml-4 block w-full" @error('info') is-invalid @enderror name="info" value="{{ old('info') }}"  placeholder="Entrer l'information " >
                     </label>
                     @error('info')
