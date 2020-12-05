@@ -28,6 +28,7 @@ class InfoController extends Controller
      * @param Info $info
      */
     public function store(Request $request,Info $info){
+        dd($info);
         $validated = $request->validate([
             'localite_id' => 'required|exists:localites,id',
             'info' => 'required'
@@ -35,7 +36,8 @@ class InfoController extends Controller
         $validated = Arr::add($validated, 'info_id',$info->id);
         $validated = Arr::add($validated, 'user_id',auth()->user()->id);
         Content::create($validated);
-        return redirect()->route('dashboard.info.show',compact('info'));
+        dd($info);
+        return redirect()->route('dashboard.info.show',$info);
     }
 
     /**

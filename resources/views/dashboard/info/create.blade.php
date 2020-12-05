@@ -56,6 +56,7 @@
                         voir {{$info->name}}
                     </a>
                 </h1>
+                {{$info->id}}
                 <hr class="border-b border-gray-400">
                 <form class="mt-2"  action="{{route('dashboard.info.store',$info)}}" accept-charset="UTF-8"  method="POST"  >
                     @csrf
