@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('Dashboard')->group(function (){
     Route::get('/', 'HomeController');
-
+    Route::post('/send', 'InfoController@send')->name('email');
 });
 
 Route::namespace('Dashboard')->middleware(['auth:sanctum', 'verified'])->prefix('dashboard')->group(function (){

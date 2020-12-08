@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Brq;
 use App\Models\Content;
 use App\Models\Info;
 use App\Models\Localite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 
 class InfoController extends Controller
 {
@@ -46,5 +48,15 @@ class InfoController extends Controller
         $infos = Info::all();
         $contents = $info->contents;
         return view('dashboard.info.show',compact('info','infos','contents'));
+    }
+
+    public function send(Request $request){
+        $request->validate([
+            'info' => 'required'
+        ]);
+
+        Mail::to('abdoulayekeita438@gmail.com')->send(new Brq($request->input('info')));
+
+        return redirect()->back()->with('message' ,'Mail envoyé avec succès');
     }
 }

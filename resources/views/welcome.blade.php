@@ -50,46 +50,36 @@
         </div>
     </div>
     <div class="w-full lg:w-4/5 p-8 mt-6 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded">
-        <div class="grid grid-cols-1 sm:grid-cols-2 sm:px-8 sm:py-12 sm:gap-x-8 md:py-16">
-            <div class="relative z-10 col-start-1 row-start-1 px-4 pt-40 pb-3 bg-gradient-to-t from-black sm:bg-none">
-                <p class="text-sm font-medium text-white sm:mb-1 sm:text-gray-500">Entire house</p>
-                <h2 class="text-xl font-semibold text-white sm:text-2xl sm:leading-7 sm:text-black md:text-3xl">Beach House in Collingwood</h2>
+        @if (session('message'))
+            <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-teal-500">
+            <span class="text-xl inline-block mr-5 align-middle">
+            <i class="fas fa-bell" />
+            </span>
+                <span class="inline-block align-middle mr-8">
+                <b class="capitalize">{{session('message')}}</b>
+            </span>
+                <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                    <span>×</span>
+                </button>
             </div>
-            <div class="col-start-1 row-start-2 px-4 sm:pb-16">
-                <div class="flex items-center text-sm font-medium my-5 sm:mt-2 sm:mb-4">
-                    <svg width="20" height="20" fill="currentColor" class="text-violet-600">
-                        <path d="M9.05 3.691c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.372 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.539 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.783.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.363-1.118l-2.8-2.034c-.784-.57-.381-1.81.587-1.81H7.03a1 1 0 00.95-.69L9.05 3.69z" />
-                    </svg>
-                    <div class="ml-1">
-                        <span class="text-black">4.94</span>
-                        <span class="sm:hidden md:inline">(128)</span>
-                    </div>
-                    <div class="text-base font-normal mx-2">·</div>
-                    <div>Collingwood, Ontario</div>
-                </div>
-                <hr class="w-16 border-gray-300 hidden sm:block">
+        @endif
+        <form class="mt-2"  action="{{route('email')}}" accept-charset="UTF-8"  method="POST"  >
+            @csrf
+            <label class="block">
+                <span class="text-gray-700">Message</span>
+                <textarea class=" form-input block w-full resize-x border rounded-md" placeholder="Entrer l'information " @error('info') is-invalid @enderror name="info" ></textarea>{{ old('info') }}  </textarea>
+
+            </label>
+            @error('info')
+            <div class="bg-red-200 relative text-red-500 py-3 px-3 rounded-lg">
+                {{$message}}
             </div>
-            <div class="col-start-1 row-start-3 space-y-3 px-4">
-                <p class="flex items-center text-black text-sm font-medium">
-                    <img src="/kevin-francis.jpg" alt="" class="w-6 h-6 rounded-full mr-2 bg-gray-100">
-                    Hosted by Kevin Francis
-                </p>
-                <button type="button" class="bg-violet-100 text-violet-700 text-base font-semibold px-6 py-2 rounded-lg">Check availability</button>
+            @enderror
+            <div class=" flex flex-col  justify-center">
+                <button class="py-3 my-8 text-lg bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl text-white">Envoyer</button>
             </div>
-            <div class="col-start-1 row-start-1 flex sm:col-start-2 sm:row-span-3">
-                <div class="w-full grid grid-cols-3 grid-rows-2 gap-2">
-                    <div class="relative col-span-3 row-span-2 md:col-span-2">
-                        <img src="/beach-house.jpg" alt="" class="absolute inset-0 w-full h-full object-cover bg-gray-100 sm:rounded-lg" />
-                    </div>
-                    <div class="relative hidden md:block">
-                        <img src="/beach-house-interior.jpg" alt="" class="absolute inset-0 w-full h-full object-cover rounded-lg bg-gray-100" />
-                    </div>
-                    <div class="relative hidden md:block">
-                        <img src="/beach-house-view.jpg" alt="" class="absolute inset-0 w-full h-full object-cover rounded-lg bg-gray-100" />
-                    </div>
-                </div>
-            </div>
-        </div>    </div>
+        </form>
+    </div>
 </div>
 <!--/container-->
 @endsection

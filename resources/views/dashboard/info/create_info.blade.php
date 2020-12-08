@@ -58,7 +58,7 @@
                 </h1>
                 <hr class="border-b border-gray-400">
 
-                                <form class="mt-2"  action="{{route('dashboard.info.store',$info)}}" accept-charset="UTF-8"  method="POST"  >
+                <form class="mt-2"  action="{{route('dashboard.info.store',$info)}}" accept-charset="UTF-8"  method="POST"  >
                     @csrf
                     <label class="block">
                         <span class="text-gray-700">{{$info->name}}</span>

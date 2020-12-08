@@ -31,6 +31,12 @@
 {{--                    <li class="mr-3 py-2 lg:py-0">--}}
 {{--                        <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-2 px-4" href="#">Lecture</a>--}}
 {{--                    </li>--}}
+                    <li class="mr-3 py-2 lg:py-0">
+                        <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-2 px-4"  href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Déconnexion</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
                 @else
                     <li class="mr-3 py-2 lg:py-0">
                         <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:underline py-2 px-4" href="{{route('login')}}">Se Connecter</a>
@@ -41,3 +47,4 @@
         </div>
     </div>
 </nav>
+
